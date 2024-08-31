@@ -17,7 +17,6 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->keyword;
-        $updated_at = $request->created_at;
 
         if ($request->category !== null) {
             $products = Product::where('category_id', $request->category)->sortable()->paginate(15);
@@ -63,7 +62,6 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->category_id = $request->input('category_id');
-        $product->updated_at = $request->input('updated_at');
         $product->save();
  
         return to_route('products.index');
